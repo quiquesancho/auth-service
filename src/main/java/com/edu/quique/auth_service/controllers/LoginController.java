@@ -19,7 +19,7 @@ public class LoginController {
 
   @PostMapping("/login")
   public ResponseEntity<UserMO> login(@RequestBody LoginRequest loginRequest) {
-    userService.loadUserByUsername(loginRequest.getUsername());
-    return ResponseEntity.ok(userService.loadUserByUsername(loginRequest.getUsername()));
+    return ResponseEntity.ok(
+        userService.loadUserByUsername(loginRequest.getUsername(), loginRequest.getPassword()));
   }
 }
