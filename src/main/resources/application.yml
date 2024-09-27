@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: auth-service
+
+config:
+  ldap:
+    user-search-filter: (mail={0})
+    user-search-base: ou=Users,dc=ieslavereda,dc=local
+    group-search-filter: memberUid={0}
+    group-search-base: ou=Groups,dc=ieslavereda,dc=local
+    url: ldap://localhost:389
+    admin-user: cn=admin,dc=ieslavereda,dc=local
+    admin-pass: 123456789
