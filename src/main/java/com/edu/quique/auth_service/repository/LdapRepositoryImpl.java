@@ -15,8 +15,8 @@ public class LdapRepositoryImpl {
   private LdapTemplate ldapTemplate;
   private UserMOMapper userMOMapper;
 
-  public UserMO loadUserByUsername(String username) {
+  public UserMO loadUserByUsername(String username, String password) {
     LdapQuery query = LdapQueryBuilder.query().where("mail").is(username);
-    return ldapTemplate.authenticate(query, "admin", userMOMapper);
+    return ldapTemplate.authenticate(query, password, userMOMapper);
   }
 }

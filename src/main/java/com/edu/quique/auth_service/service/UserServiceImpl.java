@@ -11,7 +11,7 @@ public class UserServiceImpl {
 
   private LdapRepositoryImpl ldapRepository;
 
-  public UserMO loadUserByUsername(String username) {
-    return ldapRepository.loadUserByUsername(username);
+  public UserMO loadUserByUsername(String username, String password) {
+    return ldapRepository.loadUserByUsername(username, password);
   }
 }

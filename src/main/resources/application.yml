@@ -10,4 +10,4 @@ config:
     group-search-base: ou=Groups,dc=ieslavereda,dc=local
     url: ldap://localhost:389
     admin-user: cn=admin,dc=ieslavereda,dc=local
-    admin-pass: 123456789
+    admin-pass: 12345678
