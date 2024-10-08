@@ -1,6 +1,7 @@
 package com.edu.quique.auth_service.models;
 
 import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -8,11 +9,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserMO {
+public class UserMO implements UserDetails {
     private String username;
-    private String name;
-    private String firstSurname;
-    private String secondSurname;
-    private List<String> roles;
-
+    private String password;
+    private List<RoleMO> authorities;
 }
