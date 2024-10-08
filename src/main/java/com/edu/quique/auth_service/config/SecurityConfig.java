@@ -1,5 +1,7 @@
 package com.edu.quique.auth_service.config;
 
+import com.edu.quique.auth_service.utils.jwt.JwtAuthFilter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,8 @@ import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 import org.springframework.security.ldap.authentication.BindAuthenticator;
 import org.springframework.security.ldap.authentication.LdapAuthenticationProvider;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import java.util.Collections;
 
@@ -39,17 +43,20 @@ public class SecurityConfig {
   @Value("${config.ldap.admin-pass}")
   private String PASS;
 
+  @Autowired private JwtAuthFilter jwtAuthFilter;
+
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-    httpSecurity
+    return httpSecurity
         .csrf(AbstractHttpConfigurer::disable)
         .cors(Customizer.withDefaults())
         .authorizeHttpRequests(
-            req -> req.requestMatchers("/auth/login").permitAll().anyRequest().authenticated())
+            auth -> auth.requestMatchers("/auth/**").permitAll().anyRequest().authenticated())
         .sessionManagement(
             manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        .authenticationProvider(ldapAuthenticationProvider());
-    return httpSecurity.build();
+        .authenticationProvider(ldapAuthenticationProvider())
+        .addFilterAfter(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+        .build();
   }
 
   @Bean

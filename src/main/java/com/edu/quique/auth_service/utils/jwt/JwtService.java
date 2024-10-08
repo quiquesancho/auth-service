@@ -5,6 +5,7 @@ import com.edu.quique.auth_service.models.UserMO;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +14,7 @@ import java.security.Key;
 import java.util.Date;
 
 @Component
+@NoArgsConstructor
 public class JwtService {
 
   @Value("${config.privateKey}")
