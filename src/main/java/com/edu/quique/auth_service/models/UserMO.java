@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserMO implements UserDetails {
+public class UserMO {
     private String username;
     private String password;
     private List<RoleMO> authorities;

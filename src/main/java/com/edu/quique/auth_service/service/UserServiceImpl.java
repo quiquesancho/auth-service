@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class UserServiceImpl implements UserDetailsService {
+public class UserServiceImpl {
 
   private LdapRepositoryImpl ldapRepository;
 
@@ -18,8 +18,7 @@ public class UserServiceImpl implements UserDetailsService {
     return ldapRepository.loadUserByUsername(username, password);
   }
 
-  @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+  public UserMO loadUserByUsername(String username) throws UsernameNotFoundException {
     return ldapRepository.loadUserByUsername(username);
   }
 }
