@@ -1,7 +1,6 @@
 package com.edu.quique.auth_service.models;
 
 import lombok.*;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
